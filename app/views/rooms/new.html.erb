@@ -1,0 +1,12 @@
+<%= form_with model: @room do |f| %>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :title %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %>
+    </div>
+
+  <%= f.submit "Submit", class: 'btn btn-primary pb-3' %>
+<% end %>
