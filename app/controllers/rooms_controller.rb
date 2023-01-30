@@ -1,19 +1,23 @@
 class RoomsController < ApplicationController
   def index
+    @rooms = Room.all
   end
 
   def new
     @room = Room.new
   end
 
+  def show
+    @room = Room.find_by!(id: params[:id])
+    @messages = @room.messages.includes(:user)
+    @new_message = current_user&.messages&.build(room: @room)
+  end
+
   def create
     @room = current_user.rooms.build(room_params)
 
     if @room.save
-      flash[:success] = 'Room created!'
-      redirect_to(root_path)
-    else
-      render(:new)
+      redirect_to room_path(@room)
     end
   end
 
