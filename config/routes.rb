@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
-  root "rooms#index"
-  resources :rooms, only: [:show, :create, :new]
+  resources :rooms, only: [:show, :create]
   resources :messages, only: :create
+  resources :notifications, only: [:index]
+
+  root "rooms#index"
 end
